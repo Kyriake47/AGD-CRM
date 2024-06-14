@@ -1,0 +1,29 @@
+/* STRONA GŁÓWNA */
+.word {
+  min-height: 100px;
+    margin-left: 5px;
+    color: white;
+    font: 700 normal 2.5em 'tahoma';
+    text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+  }
+
+  @media (min-width: 390px) {
+    .form-floating{
+      font-size: calc(0.75rem + ((1vw - 3.9px) * 0.5229));
+      min-height: 0vw;
+    }
+  }
+  @media (min-width: 768px) {
+    .topbar div {
+      font-size: calc(1rem + ((1vw - 7.68px) * 3.8194));
+      min-height: 0vw;
+    }
+  }
+  @media (min-width: 1920px) {
+    .topbar div {
+      font-size: 60px;
+    }
+    .form-floating label {
+      font-size: 20px;
+    }
+  }
