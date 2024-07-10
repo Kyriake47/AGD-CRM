@@ -1,12 +1,11 @@
-<?php
-    include("../../includes/accesories-header.php");
-?>
-
 <!doctype html>
 <html lang="pl">
     <head>
         <title>Klient</title>
         <meta charset="utf-8"> 
+        <?php
+            include("../../includes/accesories-header.php");
+        ?>
     </head>
     <body>
 
@@ -23,7 +22,7 @@
         <section>
             <div id="content"></div>
         </section>
-
+        
         <?php
             include("../../includes/accesories-footer.php");
         ?> 
