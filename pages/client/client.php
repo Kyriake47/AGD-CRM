@@ -22,6 +22,18 @@
         <section>
             <div id="content"></div>
         </section>
+
+
+        
+<!-- Modal -->
+<div class="modal fade" id="modal" aria-labelledby="exampleModalCenterTitle">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+     
+    </div>
+  </div>
+</div>
+
         
         <?php
             include("../../includes/accesories-footer.php");
