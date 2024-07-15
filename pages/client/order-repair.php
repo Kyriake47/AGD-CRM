@@ -38,7 +38,7 @@
         $flatNumber = $user_info['flat_number'];
         $postcode = $user_info['postcode'];
         $city = $user_info['city'];
-        $phone_number = $user_info['phone_number'];
+        $phoneNumber = $user_info['phone_number'];
         $email = $user_info['email'];
         $info = "";
     }
@@ -59,11 +59,10 @@
         ';
     }
 
-
 ?>
 <div class="data-to-order">
     <?php echo $info; ?>
-    <div class="row order-repair-form">
+    <div class="row order-repair-inputs">
         <div class="col-sm-5">
             <legend class="mb-3">Dane zamawiającego</legend>
             <div class="input-group mb-3">
@@ -72,7 +71,7 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Nazwisko</span>
-                <input class="form-control" name="name" type="text" placeholder="Nazwisko" value="<?php echo $surname; ?>">
+                <input class="form-control" name="surname" type="text" placeholder="Nazwisko" value="<?php echo $surname; ?>">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Miejscowość</span>
@@ -94,7 +93,7 @@
             <legend class="mb-3">Dane kontaktowe</legend>
             <div class="input-group mb-3">
                 <span class="input-group-text">Numer telefonu</span>
-                <input class="form-control" name="phone_number" type="text" placeholder="Numer telefonu" value="<?php echo $phone_number; ?>">
+                <input class="form-control" name="phoneNumber" type="text" placeholder="Numer telefonu" value="<?php echo $phoneNumber; ?>">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Adres e-mail</span>
@@ -119,6 +118,6 @@
         </div>
     </div>
     <div class="button-group">
-        <button type="button" class="button button2 modal-open" data-modal-content="order-repair">Wyślij zgłoszenie</button>
+        <button type="button" class="button button2 modal-start" data-modal-content="order-repair">Wyślij zgłoszenie</button>
     </div>
 </div>

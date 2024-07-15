@@ -22,10 +22,12 @@ $(document).on('click', '.modal-close', function(event) {
 // ajax form
 $(document).on('submit', 'form', function(event) {
     event.preventDefault();
+    var disabled = $(this).find(':input:disabled').removeAttr('disabled');
     var formData = $(this).serialize();
+    disabled.attr('disabled','disabled');
+
     var formId = $(this).attr('id');
     var url = '../../pages/client/handling/' + formId + '.php';
-
     $.ajax({
         type: 'POST',
         url: url,
@@ -40,8 +42,6 @@ $(document).on('submit', 'form', function(event) {
     });
     
 });
-
-
 
 /*
 function loadContent(page) {
