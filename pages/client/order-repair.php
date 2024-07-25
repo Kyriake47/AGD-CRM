@@ -6,6 +6,7 @@
     $userInfo = null;
     $errorMessage = null;
 
+    // Client data
     try{
         $stmt = $conn->prepare(
             "SELECT *
@@ -57,6 +58,33 @@
             Uzupełnij informacje w "Moje dane" aby nie musieć każdorazowo uzupełniać ich tutaj.
             </div>
         ';
+    }
+
+    // Dates to book
+
+    try {
+        $stmt = $conn->prepare("SELECT * FROM dates_to_book");
+        if ($stmt === false) {
+            throw new Exception("Prepare failed: " . htmlspecialchars($conn->error));
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $datesToBook = [];
+        if ($result->num_rows > 0) {
+            $datesToBook = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        $stmt->close();
+    } catch (Exception $e) {
+        $error_message = "Error: " . $e->getMessage();
+    }
+
+    $datesToBookToChose='';
+    if (!empty($datesToBook)) {
+        foreach ($datesToBook as $date) {
+            $datesToBookToChose .= '<div class="repair-date-to-choose"><span>'.$date['date'].'</span><span>'.$date['time'].'</span></div>';
+        }
     }
 
 ?>
@@ -116,6 +144,9 @@
                 <textarea class="form-control" name="info" rows="3"></textarea>
             </div>
         </div>
+    </div>
+    <div class="repair-dates">
+        <?php echo $datesToBookToChose; ?>
     </div>
     <div class="button-group">
         <button type="button" class="button button2 modal-start" data-modal-content="order-repair">Wyślij zgłoszenie</button>

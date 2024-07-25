@@ -57,7 +57,6 @@ $(".reply-first").click(function() {
   $(this).css("display", "none");
   $(this).parent().find(".comment-reply").css("display", "block");
 });
-
 	/*
 <div class="reply-form-item form-item">
 <button type="button" class="btn btn-1 reply-first">Odpowiedz</button>

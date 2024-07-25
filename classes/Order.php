@@ -8,7 +8,7 @@ class Order {
 
     public function addOrder($name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber) {
         $stmt = $this->conn->prepare(
-            "INSERT INTO orders (name, surname, email, type, model, info, postcode, city, street, homeNumber, flatNumber, phone_number)
+            "INSERT INTO orders (name, surname, email, type, model, info, postcode, city, street, home_number, flat_number, phone_number)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         );
 
