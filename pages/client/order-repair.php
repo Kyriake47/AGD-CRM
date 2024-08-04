@@ -61,7 +61,6 @@
     }
 
     // Dates to book
-
     try {
         $stmt = $conn->prepare("SELECT * FROM dates_to_book");
         if ($stmt === false) {
@@ -83,7 +82,12 @@
     $datesToBookToChose='';
     if (!empty($datesToBook)) {
         foreach ($datesToBook as $date) {
-            $datesToBookToChose .= '<div class="repair-date-to-choose"><span>'.$date['date'].'</span><span>'.$date['time'].'</span></div>';
+            $dateObject = DateTime::createFromFormat('Y-m-d', $date['date']);
+            $timeObject = DateTime::createFromFormat('H:i:s', $date['time']);
+            $datesToBookToChose .= '<div class="repair-date-to-choose" data-date-id="'.$date['id'].'" data-date="' . $dateObject->format('Y-m-d') . '" data-time="' . $timeObject->format('H:i:s') . '">
+                <span>' . $dateObject->format('d.m.Y') . 'r.</span>
+                <span>' . $timeObject->format('H:i') . '</span>
+            </div>';
         }
     }
 
@@ -91,6 +95,9 @@
 <div class="data-to-order">
     <?php echo $info; ?>
     <div class="row order-repair-inputs">
+        <input name="orderDate" type="hidden" value="">
+        <input name="orderTime" type="hidden" value="">
+        <input name="datesToBookId" type="hidden" value="">
         <div class="col-sm-5">
             <legend class="mb-3">Dane zamawiającego</legend>
             <div class="input-group mb-3">
@@ -143,12 +150,26 @@
                 <legend>Informacje o awarii</legend>
                 <textarea class="form-control" name="info" rows="3"></textarea>
             </div>
+            <div class="mb-3">
+                <legend>Wybierz termin naprawy</legend>
+                <div class="repair-dates">
+                    <?php echo $datesToBookToChose; ?>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="repair-dates">
-        <?php echo $datesToBookToChose; ?>
-    </div>
+    
     <div class="button-group">
         <button type="button" class="button button2 modal-start" data-modal-content="order-repair">Wyślij zgłoszenie</button>
     </div>
 </div>
+
+<script>
+    $('.repair-date-to-choose').on("click", function() {
+        $('.repair-date-to-choose').removeClass('date-checked');
+        $(this).addClass('date-checked');
+        $('input[name="orderDate"]').val($(this).data('date'));
+        $('input[name="orderTime"]').val($(this).data('time'));
+        $('input[name="datesToBookId"]').val($(this).data('date-id'));
+    });
+</script>

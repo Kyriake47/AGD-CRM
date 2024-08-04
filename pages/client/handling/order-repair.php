@@ -17,6 +17,9 @@
             $homeNumber = $_POST['homeNumber'];
             $flatNumber = $_POST['flatNumber'];
             $phoneNumber = $_POST['phoneNumber'];
+            $orderDate =  $_POST['orderDate'];
+            $orderTime =  $_POST['orderTime'];
+            $datesToBookId =  $_POST['datesToBookId'];
     
             // Walidacja danych (opcjonalnie)
             if (empty($name) || empty($email) || empty($type) || empty($model)) {
@@ -30,13 +33,13 @@
             $order = new Order($conn);
     
             // Dodaj zamówienie
-            if ($order->addOrder($name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber)) {
+            if ($order->addOrder($name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime, $datesToBookId)) {
                 //http_response_code(200);
                 echo 'Zgłoszenie zostało pomyślnie wysłane.';
             }
         } catch (Exception $e) {
             //http_response_code(500);
-            echo "Error: " . $e->getMessage();
+            echo "Error:123 " . $e->getMessage();
         }
     } else {
         //http_response_code(405); // Metoda niedozwolona

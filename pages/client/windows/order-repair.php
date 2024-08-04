@@ -11,25 +11,28 @@
         <input class="form-control" name="model" type="hidden" value="">
         <input class="form-control" name="info" type="hidden" value="">
         <input class="form-control" name="postcode" type="hidden" value="">
+        <input class="form-control" name="orderDate" type="hidden" value="">
+        <input class="form-control" name="orderTime" type="hidden" value="">
+        <input class="form-control" name="datesToBookId" type="hidden" value="">
         <div class="input-group mb-3">
             <span class="input-group-text">Miejscowość</span>
-            <input class="form-control" name="city" type="text" placeholder="Miejscowość" value="" disabled>
+            <input class="form-control" name="city" type="text" placeholder="Miejscowość" value="">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Ulica</span>
-            <input class="form-control" name="street" type="text" placeholder="Ulica" value="" disabled>
+            <input class="form-control" name="street" type="text" placeholder="Ulica" value="">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Numer</span>
-            <input class="form-control" name="homeNumber" type="text" placeholder="Nr domu" value="" disabled>
-            <input class="form-control" name="flatNumber" type="text" placeholder="Nr mieszkania" value="" disabled>
+            <input class="form-control" name="homeNumber" type="text" placeholder="Nr domu" value="">
+            <input class="form-control" name="flatNumber" type="text" placeholder="Nr mieszkania" value="">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Numer telefonu</span>
-            <input class="form-control" name="phoneNumber" type="text" placeholder="Numer telefonu" value="" disabled>
+            <input class="form-control" name="phoneNumber" type="text" placeholder="Numer telefonu" value="">
         </div>
         <div class="button-group">
-            <button type="submit" class="button button2">Wyślij zgłoszenie</button>
+            <button type="submit" class="button button2 ajax-submit">Wyślij zgłoszenie</button>
         </div>
     </form>
 </div>
