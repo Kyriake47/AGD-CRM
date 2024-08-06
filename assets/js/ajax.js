@@ -20,21 +20,29 @@ $(document).on('click', '.modal-close', function(event) {
 });
 
 // ajax form
-$(document).on('submit', 'form', function(event) {
+$(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
     event.preventDefault();
-    var disabled = $(this).find(':input:disabled').removeAttr('disabled');
-    var formData = $(this).serialize();
-    disabled.attr('disabled','disabled');
+    //var disabled = $(this).find(':input:disabled').removeAttr('disabled');
+    var form = $(this).closest('form'); 
+    var formData = form.serialize();
+    //disabled.attr('disabled','disabled');
 
-    var formId = $(this).attr('id');
+    var formId = form.attr('id');
     var url = '../../pages/client/handling/' + formId + '.php';
     $.ajax({
         type: 'POST',
         url: url,
         data: formData,
         success: function(response) {
-            alert('Sukces: ' + response);
-            $('#modal').modal('hide');
+            try {
+                var result = JSON.parse(response);
+                $(".toast-container").html(result.toast);
+                if (result.type === 'ok') {
+                    $('#modal').modal('hide');
+                }
+            } catch(error) {
+                alert(error);
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('Błąd: ' + textStatus + ' - ' + errorThrown);
