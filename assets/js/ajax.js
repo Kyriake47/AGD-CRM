@@ -1,7 +1,10 @@
+var loadedPage = "";
+
 // load page
 function loadContent(page) {
     $.get(page + '.php', function(data) {
         $('#content').html(data);
+        loadedPage = page;
     });
 }
 
@@ -39,6 +42,7 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
                 $(".toast-container").html(result.toast);
                 if (result.type === 'ok') {
                     $('#modal').modal('hide');
+                     $('.' + result.refresh).load('./' + loadedPage + '.php .' + result.refresh);
                 }
             } catch(error) {
                 alert(error);

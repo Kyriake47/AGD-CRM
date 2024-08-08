@@ -42,5 +42,5 @@
         $type = 'error';
         //http_response_code(405);
     }
-    echo json_encode(['type' =>  $type, 'toast' => $toast]);
+    echo json_encode(['type' =>  $type, 'toast' => $toast, 'refresh' => 'repair-dates']);
 ?>

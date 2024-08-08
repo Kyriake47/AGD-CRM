@@ -90,8 +90,8 @@
             </div>';
         }
     }
-
 ?>
+
 <div class="data-to-order">
     <?php echo $info; ?>
     <div class="row order-repair-inputs">
@@ -165,7 +165,8 @@
 </div>
 
 <script>
-    $('.repair-date-to-choose').on("click", function() {
+    // tzw. delegacja zdarzeń
+    $(document).on('click', '.repair-date-to-choose', function() {
         $('.repair-date-to-choose').removeClass('date-checked');
         $(this).addClass('date-checked');
         $('input[name="orderDate"]').val($(this).data('date'));
