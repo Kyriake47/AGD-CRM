@@ -40,7 +40,6 @@
         $city = $user_info['city'];
         $phone_number = $user_info['phone_number'];
         $email = $user_info['email'];
-        $info = "";
     }
     else{
         $name = "";
@@ -52,20 +51,14 @@
         $city = "";
         $phone_number = "";
         $email = "";
-        $info = '
-            <div class="alert alert-info" role="alert">
-            Uzupełnij informacje w "Moje dane" aby nie musieć każdorazowo uzupełniać ich tutaj.
-            </div>
-        ';
     }
 
 
 ?>
 
-<div class="container">
-    <form action="send-order.php" method="POST">
-        <?php echo $info; ?>
-        <div class="row my-data-form">
+<div class="my-data">
+    <form id="my-data">
+        <div class="row my-data-inputs">
             <div class="col-sm-5">
                 <legend class="mb-3">Moje dane</legend>
                 <div class="input-group mb-3">
@@ -104,6 +97,10 @@
                     <input class="form-control" name="email" type="text" placeholder="Adres e-mail" value="<?php echo $email; ?>">
                 </div>
             </div>
-        </div>
+        
+            <div class="button-group">
+                <button type="submit" class="button button2 ajax-submit">Zapisz</button>
+            </div>
+        </div>   
     </form>
 </div>
