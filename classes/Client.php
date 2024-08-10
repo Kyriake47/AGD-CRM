@@ -1,30 +1,37 @@
 <?php
-    class Order {
-        private $conn;
+include(__DIR__ . "/../traits/NotificationTrait.php");
+include("DatabaseHandler.php");
 
-        public function __construct($dbConnection) {
-            $this->conn = $dbConnection;
-        }
+class Client extends DatabaseHandler {
+    use NotificationTrait;
 
-        public function updateInfo($name, $surname, $email, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $user_id = false) {
+    public function __construct($dbConnection) {
+        parent::__construct($dbConnection);
+    }
 
-        if ($user_id == false) $user_id = $_SESSION['user_id'];
-        $stmt = $this->conn->prepare(
-            "UPDATE users 
-            SET name = ?, surname = ?
-            WHERE id = ?"
+    public function getInfo($userId) {
+        $query = "SELECT * FROM clients_data WHERE user_id = ?";
+        $result = $this->fetchResults($query, 'i', [$userId]);
+        return $result;
+    }
+
+    public function updateInfo($name, $surname, $email, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $user_id) {
+
+        // Update users
+        $this->executeQuery(
+            "UPDATE users SET name = ?, surname = ? WHERE id = ?",
+            'ssi',
+            [$name, $surname, $user_id]
         );
 
-        if ($stmt === false) {
-            throw new Exception("Prepare failed: " . htmlspecialchars($this->conn->error));
-        }
-
-        $stmt->bind_param('ssi', $name, $surname, $user_id);
-
-        if (!$stmt->execute()) {
-            throw new Exception("Insert failed: " . htmlspecialchars($stmt->error));
-        }
-        $stmt->close();
-        }
+        // Update clients_data
+        $this->executeQuery(
+            "UPDATE clients_data 
+            SET street = ?, home_number = ?, flat_number = ?, postcode = ?, city = ?, phone_number = ?, email = ?
+            WHERE user_id = ?",
+            'siissssi',
+            [$street, $homeNumber, $flatNumber, $postcode, $city, $phoneNumber, $email, $user_id]
+        );
     }
+}
 ?>

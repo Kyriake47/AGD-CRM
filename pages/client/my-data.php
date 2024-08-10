@@ -38,7 +38,7 @@
         $flatNumber = $user_info['flat_number'];
         $postcode = $user_info['postcode'];
         $city = $user_info['city'];
-        $phone_number = $user_info['phone_number'];
+        $phoneNumber = $user_info['phone_number'];
         $email = $user_info['email'];
     }
     else{
@@ -49,10 +49,9 @@
         $flatNumber = "";
         $postcode = "";
         $city = "";
-        $phone_number = "";
+        $phoneNumber = "";
         $email = "";
     }
-
 
 ?>
 
@@ -67,7 +66,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Nazwisko</span>
-                    <input class="form-control" name="name" type="text" placeholder="Nazwisko" value="<?php echo $surname; ?>">
+                    <input class="form-control" name="surname" type="text" placeholder="Nazwisko" value="<?php echo $surname; ?>">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Miejscowość</span>
@@ -90,7 +89,7 @@
                 <legend class="mb-3">Dane kontaktowe</legend>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Numer telefonu</span>
-                    <input class="form-control" name="phone_number" type="text" placeholder="Numer telefonu" value="<?php echo $phone_number; ?>">
+                    <input class="form-control" name="phoneNumber" type="text" placeholder="Numer telefonu" value="<?php echo $phoneNumber; ?>">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Adres e-mail</span>
