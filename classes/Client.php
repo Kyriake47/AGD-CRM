@@ -10,9 +10,19 @@ class Client extends DatabaseHandler {
     }
 
     public function getInfo($userId) {
-        $query = "SELECT * FROM clients_data WHERE user_id = ?";
+        $query = "SELECT * FROM users  LEFT JOIN clients_data  ON users.id = clients_data.user_id WHERE user_id = ?";
         $result = $this->fetchResults($query, 'i', [$userId]);
-        return $result;
+
+        // The result is always one line
+        $row = $result[0];
+
+        foreach ($row as $key => $value) {
+            if (empty($value)) {
+                $row[$key] = '';
+            }
+        }
+
+        return $row;
     }
 
     public function updateInfo($name, $surname, $email, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $user_id) {
