@@ -1,12 +1,15 @@
 <?php 
     include("../../../config/connection.php");
     include("../../../classes/Order.php");
+    session_start();
 
+    $clientId = $_SESSION['user_id'];
     $order = new Order($conn);
     $type = '';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
+           
             $name = $_POST['name'];
             $surname = $_POST['surname'];
             $email = $_POST['email'];
@@ -28,7 +31,7 @@
                 $type = 'error';
                 //http_response_code(400);
             } else {
-                $order->addOrder($name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime, $datesToBookId);
+                $order->addOrder($clientId, $name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime, $datesToBookId);
                 $toast = $order->showToast('Udało się!', 'Zamówienie zostało dodane pomyślnie.');
                 $type = 'ok';
             }

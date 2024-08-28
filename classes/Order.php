@@ -9,13 +9,13 @@ class Order extends DatabaseHandler {
         parent::__construct($dbConnection);
     }
 
-    public function addOrder($name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime, $datesToBookId) {
+    public function addOrder($clientId, $name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime, $datesToBookId) {
 
         $this->executeQuery(
-            "INSERT INTO orders (name, surname, email, type, model, info, postcode, city, street, home_number, flat_number, phone_number, date, time)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            'ssssssissiiiss',
-            [$name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime]
+            "INSERT INTO orders (client_id, name, surname, email, type, model, info, postcode, city, street, home_number, flat_number, phone_number, date, time)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            'issssssissiiiss',
+            [$clientId, $name, $surname, $email, $type, $model, $info, $postcode, $city, $street, $homeNumber, $flatNumber, $phoneNumber, $orderDate, $orderTime]
         );
 
         $this->executeQuery(

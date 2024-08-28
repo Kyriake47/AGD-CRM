@@ -14,7 +14,7 @@
             <div class="navbar-menu">
                 <button onclick="loadContent('order-repair')">Zamów naprawę</button>
                 <button onclick="loadContent('my-data')">Moje dane</button>
-                <button onclick="loadContent('repair-history')">Historia zamówień</button>
+                <button onclick="loadContent('order-history')">Historia zamówień</button>
                 <button onclick="loadContent('logout')">Wyloguj</button>
             </div>
         </section>
