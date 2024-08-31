@@ -1,53 +1,46 @@
 <?php
     include("../../config/connection.php");
+    include("../../classes/Client.php");
     session_start();
 
     $userId = $_SESSION['user_id'];
 
-    try {
-        $stmt = $conn->prepare("SELECT * FROM orders WHERE client_id = ?");
-        if ($stmt === false) {
-            throw new Exception("Prepare failed: " . htmlspecialchars($conn->error));
-        }
+    $client = new Client($conn);
+    $orderHistory = $client->getClientOrders($userId);
+
     
-        $stmt->bind_param('i', $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $orderHistory = [];
-        if ($result->num_rows > 0) {
-            $orderHistory = $result->fetch_all(MYSQLI_ASSOC);
-        }
-
-        $stmt->close();
-    } catch (Exception $e) {
-        $error_message = "Error: " . $e->getMessage();
-    }
-
     $orderHistoryList = '';
+    $i = 1;
     if (!empty($orderHistory)) {
         foreach ($orderHistory as $order) {
             $orderHistoryList .= '
                 <tr>
-                    <th scope="row">1</th>
-                    <td>' . $order['date'] . '</td>
+                    <th scope="row">' . $i .'</th>
                     <td>' . $order['type'] . '</td>
+                    <td>' . $order['date'] . '</td>
+                    <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $order['id'] .'">Szczegóły</button></td>
+                    <td>' . $order['status'] . '</td>
                 </tr>
             ';
+            $i++;
         }
     }
 
 ?>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Data</th>
-            <th scope="col">Typ</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php echo $orderHistoryList; ?>
-    </tbody>
-</table>
+<div class="order-history">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Typ</th>
+                <th scope="col">Data</th>
+                <th scope="col"></th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php echo $orderHistoryList; ?>
+        </tbody>
+    </table>
+</div>

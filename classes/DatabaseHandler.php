@@ -6,6 +6,7 @@
             $this->conn = $dbConnection;
         }
 
+        // UPDATE, DELETE, INSERT INTO
         protected function executeQuery($query, $types, $params) {
             $stmt = $this->conn->prepare($query);
 
@@ -22,6 +23,7 @@
             $stmt->close();
         }
 
+        // SELECT
         protected function fetchResults($query, $types = null, $params = []) {
             $stmt = $this->conn->prepare($query);
     

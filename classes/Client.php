@@ -43,5 +43,21 @@ class Client extends DatabaseHandler {
             [$street, $homeNumber, $flatNumber, $postcode, $city, $phoneNumber, $email, $user_id]
         );
     }
+
+    public function getClientOrders($clientId) {
+
+        $query = "SELECT * FROM orders WHERE client_id = ?";
+        $result = $this->fetchResults($query, 'i', [$clientId]);
+
+        foreach ($result as &$row) {
+            foreach ($row as $key => $value) {
+                if (empty($value)) {
+                    $row[$key] = '';
+                }
+            }
+        }
+        
+        return $result;
+    }
 }
 ?>

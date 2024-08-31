@@ -11,7 +11,8 @@ function loadContent(page) {
 // load modal
 $(document).on('click', '.modal-start', function(event) {
     var windowContent = $(this).data('modal-content');
-    $.get('windows/' + windowContent + '.php', function(data) {
+    var id = $(this).data('id');
+    $.post('windows/' + windowContent + '.php', { id: id }, function(data) {
         $('.modal-content').html(data);
         $('#modal').modal('show');
     });
@@ -29,7 +30,7 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
     var form = $(this).closest('form'); 
     var formData = form.serialize();
     //disabled.attr('disabled','disabled');
-
+    
     var formId = form.attr('id');
     var url = '../../pages/client/handling/' + formId + '.php';
     $.ajax({
@@ -37,12 +38,13 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
         url: url,
         data: formData,
         success: function(response) {
+           // alert(response);
             try {
                 var result = JSON.parse(response);
                 $(".toast-container").html(result.toast);
                 if (result.type === 'ok') {
                     $('#modal').modal('hide');
-                     $('.' + result.refresh).load('./' + loadedPage + '.php .' + result.refresh);
+                     $('.' + result.refresh).load('./' + loadedPage+'.php .' + result.refresh);
                 }
             } catch(error) {
                 alert(error);
@@ -52,22 +54,5 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
             alert('Błąd: ' + textStatus + ' - ' + errorThrown);
         }
     });
-    
 });
-
-/*
-function loadContent(page) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', page + '.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('content').innerHTML = xhr.responseText;
-            $(document).click("window-open", function(){
-                $('#exampleModalCenter').modal('show');
-            })
-        }
-    };
-    xhr.send();
-}
-*/
 

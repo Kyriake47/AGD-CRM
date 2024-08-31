@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pl">
     <head>
-        <title>Klient</title>
+        <title>Pracownik</title>
         <meta charset="utf-8"> 
         <?php
             include("../../includes/accesories-header.php");
@@ -12,9 +12,8 @@
         <section class="topbar ctb">
             <img class ="me-auto ml-10" src="../../assets/images/logo.png" alt="strona AGD">
             <div class="navbar-menu">
-                <button onclick="loadContent('order-repair')">Zamów naprawę</button>
-                <button onclick="loadContent('my-data')">Moje dane</button>
-                <button onclick="loadContent('order-history')">Historia zamówień</button>
+                <button onclick="loadContent('my-order')">Moje naprawy</button>
+                <button onclick="loadContent('current-order')">Wybór naprawy</button>
                 <button onclick="window.location.href='../logout.php'">Wyloguj</button>
             </div>
         </section>
@@ -38,7 +37,7 @@
 
         <script>
             $(document).ready(function() {
-                loadContent('order-repair');
+                loadContent('my-order');
             });
         </script>
 

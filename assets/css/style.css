@@ -28,6 +28,13 @@ ul{
   width: auto;
 }
 
+.button3{
+  width: auto;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px;
+}
+
 .button:hover{
   background-color: rgb(0, 165, 11);
 }
@@ -156,6 +163,20 @@ margin-left: 10px;
   transition: .2s;
 }
 
-.date-checked {
+.date-checked{
   border: 3px solid rgb(0, 133, 9);
+}
+
+.order-repair-inputs{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.my-data-inputs{
+  display: flex;
+  justify-content: center;
+}
+
+.order-history {
+  padding: 0px 50px;
 }

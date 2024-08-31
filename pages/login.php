@@ -51,7 +51,7 @@
         //echo "przekierowanie na strone uzytkownika.<br>";
       }
       else if ($user["permission"]=="2") {
-        header('Location: pracownik.php');
+        header('Location: worker/worker.php');
         //echo "przekierowanie na strone pracownika.<br>";
       }
       else if ($user["permission"]=="1") {
