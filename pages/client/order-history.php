@@ -8,7 +8,6 @@
     $client = new Client($conn);
     $orderHistory = $client->getClientOrders($userId);
 
-    
     $orderHistoryList = '';
     $i = 1;
     if (!empty($orderHistory)) {
@@ -19,7 +18,7 @@
                     <td>' . $order['type'] . '</td>
                     <td>' . $order['date'] . '</td>
                     <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $order['id'] .'">Szczegóły</button></td>
-                    <td>' . $order['status'] . '</td>
+                    <td>' . ( $order['status'] == 1 ? 'Gotowe' : 'Oczekuje' )  . '</td>
                 </tr>
             ';
             $i++;

@@ -43,5 +43,24 @@
             return $row;
         
         }
+
+        //status 0 waiting
+        //status 1 fixed
+        public function getOrdersGroup($status) {
+
+            $query = "SELECT * FROM orders WHERE status = ?";
+            $result = $this->fetchResults($query, 'i', [$status]);
+
+            foreach ($result as &$row) {
+                foreach ($row as $key => $value) {
+                    if (empty($value)) {
+                        $row[$key] = '';
+                    }
+                }
+            }
+            
+            return $result;
+        
+        }
     }
 ?>

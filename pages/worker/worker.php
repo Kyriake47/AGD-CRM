@@ -13,7 +13,7 @@
             <img class ="me-auto ml-10" src="../../assets/images/logo.png" alt="strona AGD">
             <div class="navbar-menu">
                 <button onclick="loadContent('my-order')">Moje naprawy</button>
-                <button onclick="loadContent('current-order')">Wybór naprawy</button>
+                <button onclick="loadContent('chose-order')">Wybór naprawy</button>
                 <button onclick="window.location.href='../logout.php'">Wyloguj</button>
             </div>
         </section>
