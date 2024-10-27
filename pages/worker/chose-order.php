@@ -17,7 +17,7 @@
                     <th scope="row">' . $i .'</th>
                     <td>' . $orderRow['type'] . '</td>
                     <td>' . $orderRow['date'] . '</td>
-                    <td><button class="button button3 modal-start" data-modal-content="" data-id="' . $orderRow['id'] .'">Szczegóły</button></td>
+                    <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $orderRow['id'] .'">Szczegóły</button></td>
                 </tr>
             ';
             $i++;
