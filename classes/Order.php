@@ -48,7 +48,7 @@
         //status 1 fixed
         public function getOrdersGroup($status) {
 
-            $query = "SELECT * FROM orders WHERE status = ?";
+            $query = "SELECT * FROM orders WHERE status = ? AND worker_id IS NULL ";
             $result = $this->fetchResults($query, 'i', [$status]);
 
             foreach ($result as &$row) {
@@ -62,5 +62,26 @@
             return $result;
         
         }
+
+        public function updateOrder($orderId, array $fields)
+        {
+            $setClause = [];
+            $params = [];
+            $paramTypes = '';
+
+            foreach ($fields as $column => $value) {
+                $setClause[] = "$column = ?";
+                $params[] = $value;
+                $paramTypes .= is_int($value) ? 'i' : 's';
+            }
+
+            $params[] = $orderId;
+            $paramTypes .= 'i';
+
+            $query = "UPDATE orders SET " . implode(', ', $setClause) . " WHERE id = ?";
+
+            return $this->executeQuery($query, $paramTypes, $params);
+        }
+
     }
 ?>

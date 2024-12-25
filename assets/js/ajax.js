@@ -10,9 +10,10 @@ function loadContent(page) {
 
 // load modal
 $(document).on('click', '.modal-start', function(event) {
+    var dataAttributes = $(this).data();
+    delete dataAttributes.modalContent;
     var windowContent = $(this).data('modal-content');
-    var id = $(this).data('id');
-    $.post('windows/' + windowContent + '.php', { id: id }, function(data) {
+    $.post('windows/' + windowContent + '.php', dataAttributes, function(data) {
         $('.modal-content').html(data);
         $('#modal').modal('show');
     });
@@ -32,13 +33,15 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
     //disabled.attr('disabled','disabled');
     
     var formId = form.attr('id');
-    var url = '../../pages/client/handling/' + formId + '.php';
+    var currentPath = window.location.pathname;
+    var basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+    var url = basePath + '/handling/' + formId + '.php';
     $.ajax({
         type: 'POST',
         url: url,
         data: formData,
         success: function(response) {
-           // alert(response);
+            //alert(response);
             try {
                 var result = JSON.parse(response);
                 $(".toast-container").html(result.toast);
@@ -55,4 +58,3 @@ $(document).on('click', 'button[type="submit"].ajax-submit', function(event) {
         }
     });
 });
-

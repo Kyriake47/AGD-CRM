@@ -4,8 +4,40 @@
     session_start();
 
     $orderId = $_POST['id'];
+    $windowType = $_POST['type'];
     $order = new Order($conn);
     $orderInfo = $order->getOrderInfo($orderId);
+
+    if ($windowType == 1)
+    {
+        $formContent = '
+            <div class="button-group">
+                <button type="submit" class="button button2 ajax-submit">Przypisz zgłoszenie do mnie</button>
+            </div>
+        ';
+    }
+    else {
+        $formContent = '
+            <h5 class="modal-title mb-3">Czy chciałbyś dodać coś na temat zamówienia?</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Status zamówienia</span>
+                <select name="orderStatus">
+                    <option value="0">Oczekuje</option>
+                    <option value="1">Ukończone</option>
+                    <option value="2">Anulowane</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Moje notatki</span>
+                <input class="form-control" name="myNotes" type="text" placeholder="Tutaj dodaj swoją notatkę dotyczącą zamówienia.">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="button button2 ajax-submit">Zapisz</button>
+            </div>
+        ';
+    }
 ?>
 
 <div class="modal-body">
@@ -46,11 +78,9 @@
 
     <div>
         <form id="chose-order">
+            <input class="form-control" name="windowType" type="hidden" value="<?php echo $windowType; ?>">
             <input class="form-control" name="orderId" type="hidden" value="<?php echo $orderId; ?>">
-
-            <div class="button-group">
-                <button type="submit" class="button button2 ajax-submit">Przypisz zgłoszenie do mnie</button>
-            </div>
+            <?php echo $formContent; ?>
         </form>
     </div>
 </div>

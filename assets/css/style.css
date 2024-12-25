@@ -5,6 +5,13 @@ body{
 ul{
   margin: auto;
 }
+p{
+  margin: 0;
+  padding: 0;
+}
+td, th{
+  align-content: center;
+}
 .row{
   margin: 0px;
   height: auto;
@@ -23,18 +30,15 @@ ul{
   width: 100%;
   padding: 15px;
 }
-
 .button2{
   width: auto;
 }
-
 .button3{
   width: auto;
   font-size: 14px;
   font-weight: 500;
   padding: 7px;
 }
-
 .button:hover{
   background-color: rgb(0, 165, 11);
 }
@@ -53,6 +57,15 @@ ul{
 margin-left: 10px;
 }
 
+/* FORM */
+select{
+  flex: 1;
+  border-color: #dee2e6;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+}
+
 /* STRONA GŁÓWNA */
 .topbar{
   background-color: rgb(54 105 36);
@@ -65,6 +78,9 @@ margin-left: 10px;
   margin-top: auto;
   margin-bottom: auto;
 }
+.first-page-content{
+  height: calc(100vh - 100px);
+}
 .login{
   background-color: #fff;
   margin-top: 20px;
@@ -75,6 +91,12 @@ margin-left: 10px;
   height: 350px;
   margin-right: 20px;
   margin-left: 20px;
+}
+.topbar p{
+  font-size: 36px;
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 600;
 }
 .nav-link{
   color: rgb(0, 133, 9);
@@ -177,6 +199,15 @@ margin-left: 10px;
   justify-content: center;
 }
 
-.order-history {
+.order-history{
   padding: 0px 50px;
 }
+
+/* WORKER */
+.status{
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+}
+
+

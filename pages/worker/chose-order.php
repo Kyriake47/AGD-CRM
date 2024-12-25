@@ -16,8 +16,9 @@
                 <tr>
                     <th scope="row">' . $i .'</th>
                     <td>' . $orderRow['type'] . '</td>
+                     <td>' . $orderRow['city'] . '</td>
                     <td>' . $orderRow['date'] . '</td>
-                    <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $orderRow['id'] .'">Szczegóły</button></td>
+                    <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $orderRow['id'] .'" data-type="1">Szczegóły</button></td>
                 </tr>
             ';
             $i++;
@@ -32,6 +33,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Typ</th>
+                <th scope="col">Miejscowość</th>
                 <th scope="col">Data</th>
                 <th scope="col"></th>
             </tr>
