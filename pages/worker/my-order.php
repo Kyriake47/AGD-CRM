@@ -5,8 +5,8 @@
 
     $userId = $_SESSION['user_id'];
 
-    $worker = new Worker($conn);
-    $orders = $worker->getWorkerOrders($userId);
+    $worker = new Worker($conn, $_SESSION['user_id']);
+    $orders = $worker->getWorkerOrders();
 
     $orderList = '';
     $i = 1;
@@ -30,7 +30,7 @@
                     <td>' . $orderRow['type'] . '</td>
                     <td>' . $orderRow['city'] . '</td>
                     <td>' . $orderRow['date'] . '</td>
-                    <td><button class="button button3 modal-start" data-modal-content="order-details" data-id="' . $orderRow['id'] .'" data-type="2">Szczegóły</button></td>
+                    <td><button class="button button3 modal-start" data-modal-content="my-order-details" data-id="' . $orderRow['id'] .'">Szczegóły</button></td>
                     <td><div class="status" ' . $style . '></div></td>
                 </tr>
             ';
